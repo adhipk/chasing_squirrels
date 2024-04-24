@@ -27,8 +27,9 @@ async function drawMap() {
             .data(centralPark.features.slice(1,-1))
             .enter().append("path")
             .attr("d", path)
-            .attr("fill", "#eeeeee")
+            .attr("fill", "none")
             .attr("stroke", "#687169")
+            .style("opacity", 0.5)
 
         // Create force simulation
         const simulation = d3.forceSimulation(data)
@@ -67,7 +68,7 @@ async function drawMap() {
                 const dx = forceDirection * ( mouseX - d.x);
                 const dy = forceDirection * (mouseY - d.y);
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                if ( distance>0 && distance < 20) {
+                if ( distance>0 && distance < 25) {
                     const angle = Math.atan2(dy, dx);
                     d.x += Math.cos(angle) * 2;
                     d.y += Math.sin(angle) * 2;
