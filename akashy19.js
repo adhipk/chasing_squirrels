@@ -9,7 +9,7 @@ async function drawMap() {
         return d['Approaches'] == "true" || d['Runs from'] == "true" || d['Indifferent'] == "true";
     }).sort(() => 0.5 - Math.random()).splice(0,100));
     console.log(data);
-    await d3.json("data/centralPark.geojson").then(function (centralPark) {
+    await d3.json("data/centralPark2.geojson").then(function (centralPark) {
 
         // Define projection
         var projection = d3.geoIdentity().reflectY(true).fitSize([width - 20, height - 20], centralPark);
@@ -19,11 +19,16 @@ async function drawMap() {
         const svg = d3.select("#squirrels");
         // Render map
         svg.selectAll("path")
-            .data(centralPark.features)
+            .data([centralPark.features[0]])
             .enter().append("path")
             .attr("d", path)
-            .attr("fill", "#a7f3d0")
-            .attr("stroke", "black")
+            .attr("fill", "#a9ba9d")
+        svg.selectAll("path")
+            .data(centralPark.features.slice(1,-1))
+            .enter().append("path")
+            .attr("d", path)
+            .attr("fill", "#eeeeee")
+            .attr("stroke", "#687169")
 
         // Create force simulation
         const simulation = d3.forceSimulation(data)
