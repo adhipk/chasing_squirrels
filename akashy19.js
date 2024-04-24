@@ -13,9 +13,9 @@ async function drawMap() {
 
         // Define projection
         var projection = d3.geoIdentity().reflectY(true).fitSize([width - 20, height - 20], centralPark);
-
         // Define path generator
         var path = d3.geoPath().projection(projection);
+
         const svg = d3.select("#squirrels");
         // Render map
         svg.selectAll("path")
@@ -23,7 +23,7 @@ async function drawMap() {
             .enter().append("path")
             .attr("d", path)
             .attr("fill", "#a7f3d0")
-            .attr("stroke", "black");
+            .attr("stroke", "black")
 
         // Create force simulation
         const simulation = d3.forceSimulation(data)
@@ -34,17 +34,18 @@ async function drawMap() {
         // render points
         const circles = svg.selectAll("circle")
             .data(data)
-            .enter().append("circle")
-            .attr("cx", function (d) { return projection([d.X, d.Y])[0]; })
-            .attr("cy", function (d) { return projection([d.X, d.Y])[1]; })
-            .attr("r", 5)
-            .attr("fill", "red");
+            .enter().append("use")
+            .attr("xlink:href", d=>`#squirrel-${d['Primary Fur Color']}`)
+            .attr('width', 20)
+            .attr('height', 20)
+            .attr("x", function (d) { return projection([d.X, d.Y])[0]+10; })
+            .attr("y", function (d) { return projection([d.X, d.Y])[1]+10; });
         // 
         // Function to update circle positions
         function ticked() {
             circles
-                .attr("cx", d => d.x)
-                .attr("cy", d => d.y);
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
         }
         svg.on("mousemove", function (event) {
             const mouseX = event.offsetX;
