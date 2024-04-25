@@ -3,6 +3,7 @@ let data = [];
 const margin = 40;
 let width = window.innerWidth - margin;
 let height = window.innerHeight - margin;
+
 async function drawMap() {
     // load data check if squirrels approach or runs from or are indifferent, pick 100 random squirrels`
     data = await d3.csv(filename).then(data=>data.filter(d=>{
@@ -33,8 +34,9 @@ async function drawMap() {
 
         // Create force simulation
         const simulation = d3.forceSimulation(data)
-            .force("x", d3.forceX().x(d => projection([d.X, d.Y])[0]))
-            .force("y", d3.forceY().y(d => projection([d.X, d.Y])[1]))
+            // shift postiotion to center glyph
+            .force("x", d3.forceX().x(d => projection([d.X, d.Y])[0]-10))
+            .force("y", d3.forceY().y(d => projection([d.X, d.Y])[1]-10))
             // .force("collide", d3.forceCollide(10).strength(1))
             .on("tick", ticked);
         // render points

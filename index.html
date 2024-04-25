@@ -11,20 +11,39 @@
     <h2> Interactive Visualization of the Squirrel sightings in Central Park, New York City. </h2>
     <p> The graph is a Modded Scatter Map with a themed glyph.</p>
     <p>Reminiscent of chasing squirrels in a park, this exhibit is meant to be playful showcase of data exploration. It invites the user to interact with each data point and see how it reacts.</p>
+    <h2>Graph Description</h2>
+    <p> Marks: point mark (themed Squirrel Graphic), Area(Central Park)</p>
+    <p> Channels: Position (lat,long), Color Hue (Primary Fur Color), Motion (Approaches/Runs from/Indifferent to humans)</p>
     <h3>How to read the data</h3>
     <p>Each Squirrel is represented by a graphic, color coded by their primary color. The graph shows a map of central park with coordinates of the squirrel sightings.</p>
-    <div class="legend">
-        <div class="legend-item">
-            <img src = "assets/squirrel-cinamon.svg"  width="24px" alt="My Happy SVG"/><p>Cinnamon</p>    
-        </div>
-        <div class="legend-item">
-            <img src = "assets/squirrel-brown.svg"  width="24px" alt="My Happy SVG"/><p>Black</p>
-        </div>
-        <div class="legend-item">
-            <img src = "assets/squirrel-grey.svg"  width="24px" alt="My Happy SVG"/><p>Grey</p>
-        </div>
-    </div>
-    <p> Scroll over a data point and see how it reacts! if the squirrel was seen approaching humans it will be attracted to the cursor, if they was seen running away it will be repelled. If nothing happens it means the squirrel was indifferent to humans.</p>
+        <div class="legend-container">
+            <div class="legend">
+                <div class="legend-heading"> Color Legend</div>
+                <div class="legend-item">
+                    <img src = "assets/squirrel-cinamon.svg" width="24px" alt="My Happy SVG"/><p>Cinnamon</p>    
+                </div>
+                <div class="legend-item">
+                    <img src = "assets/squirrel-brown.svg"  width="24px" alt="My Happy SVG"/><p>Black</p>
+                </div>
+                <div class="legend-item">
+                    <img src = "assets/squirrel-grey.svg"  width="24px" alt="My Happy SVG"/><p>Grey</p>
+                </div>
+            </div>
+          
+            <div class="legend">
+                <div class="legend-heading">Hover over the point to see the reaction</div>
+                <div class="legend-item sqr-move sqr-move-closer">
+                    <img src = "assets/squirrel-cinamon.svg" width="24px" alt="My Happy SVG"/><p>Approaches</p>    
+                </div>
+                <div class="legend-item sqr-move sqr-move-away">
+                    <img src = "assets/squirrel-cinamon.svg"  width="24px" alt="My Happy SVG"/><p>Runs Away</p>
+                </div>
+                <div class="legend-item">
+                    <img src = "assets/squirrel-cinamon.svg"  width="24px" alt="My Happy SVG"/><p>Indifferent</p>
+                </div>
+            </div>
+        </div> 
+    
     <p>100 squirrels are randomly selected from the dataset, refresh the page to see a different set of squirrels.</p>
    
     <svg id="defs">
