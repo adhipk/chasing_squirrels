@@ -10,7 +10,7 @@ async function drawMap() {
         return d['Approaches'] == "true" || d['Runs from'] == "true" || d['Indifferent'] == "true";
     }).sort(() => 0.5 - Math.random()).splice(0,100));
     console.log(data);
-    await d3.json("data/centralPark2.geojson").then(function (centralPark) {
+    await d3.json("data/CentralPark2.geojson").then(function (centralPark) {
 
         // Define projection
         var projection = d3.geoIdentity().reflectY(true).fitSize([width - 20, height - 20], centralPark);
